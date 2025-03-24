@@ -32,6 +32,15 @@ async function run() {
         // Getting Job collection from DB
         const jobsCollection = await client.db('JobPortal').collection('jobs');
 
+        // -------------------------------------------Jobs related all apis-------------------------------------------
+
+        // get all jobs
+        app.get('/jobs', async (req, res) => {
+            const jobs = await jobsCollection.find().toArray();
+            res.send(jobs);
+        })
+
+
     } finally {
         // await client.close();
     }
