@@ -87,6 +87,20 @@ async function run() {
             res.send(result);
         })
 
+        // Updating Single Job Application
+        app.put('/jobApplication/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const updatedApplication = {
+                $set: {
+                    linkedin: req.body.linkedin,
+                    github: req.body.github,
+                    resume: req.body.resume
+                }
+            }
+            const result = jobsApplicationCollection.updateOne(filter, updatedApplication);
+        })
+
 
     } finally {
         // await client.close();
