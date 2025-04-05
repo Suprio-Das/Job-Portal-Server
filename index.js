@@ -59,7 +59,14 @@ async function run() {
             res.send(result);
         });
 
-        // Getting all data using Query
+        // Getting single application
+        app.get('/jobApplication/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await jobsApplicationCollection.findOne(id);
+            res.send(result);
+        })
+
+        // Getting all applications using Query
         app.get('/jobApplications', async (req, res) => {
             const email = req.query.email;
             const query = { "applicant_email": email };
