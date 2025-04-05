@@ -62,7 +62,8 @@ async function run() {
         // Getting single application
         app.get('/jobApplication/:id', async (req, res) => {
             const id = req.params.id;
-            const result = await jobsApplicationCollection.findOne(id);
+            const query = { _id: new ObjectId(id) };
+            const result = await jobsApplicationCollection.findOne(query);
             res.send(result);
         })
 
